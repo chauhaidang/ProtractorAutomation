@@ -1,5 +1,22 @@
 {
-  "dependencies": {
-    "protractor": "^6.0.0"
+  "name": "protractor_framework",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chauhaidang/ProtractorAutomation.git"
+  },
+  "author": "dangchau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chauhaidang/ProtractorAutomation/issues"
+  },
+  "homepage": "https://github.com/chauhaidang/ProtractorAutomation#readme",
+  "devDependencies": {
+    "protractor": "5.4.2"
+  },
+  "scripts": {
+    "protractor_version": "protractor --version"
   }
 }
