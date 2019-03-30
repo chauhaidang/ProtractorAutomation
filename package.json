@@ -17,6 +17,7 @@
     "protractor": "5.4.2"
   },
   "scripts": {
-    "protractor_version": "protractor --version"
+    "protractor": "protractor",
+    "webdriver-manager": "webdriver-manager"
   }
 }
