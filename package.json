@@ -13,11 +13,16 @@
     "url": "https://github.com/chauhaidang/ProtractorAutomation/issues"
   },
   "homepage": "https://github.com/chauhaidang/ProtractorAutomation#readme",
-  "devDependencies": {
-    "protractor": "5.4.2"
+  "dependencies": {
+    "protractor": "6.0.0",
+    "webdriver-manager": "12.1.1",
+    "jasmine": "^3.4.0"
   },
+  "devDependencies": {},
   "scripts": {
+    "protractor-version": "protractor --version",
     "protractor": "protractor",
-    "webdriver-manager": "webdriver-manager"
+    "webdriver-manager": "webdriver-manager",
+    "webdriver-manager-version": "webdriver-manager --version"
   }
 }
