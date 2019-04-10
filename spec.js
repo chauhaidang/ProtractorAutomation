@@ -8,3 +8,10 @@ describe('Enter name feature', function(){
         browser.sleep(5000);
     });
 });
+
+describe('title test', function(){
+    it('get title', function(){
+        browser.get('https://angularjs.org');
+        expect(browser.getTitle()).toEqual('AngularJS — Superheroic JavaScript MVW Framework');
+    });
+});
