@@ -21,6 +21,6 @@
     "webdriver-manager": "webdriver-manager",
     "webdriver:update": "webdriver-manager update",
 		"webdriver:start": "webdriver-manager start",
-		"test": "protractor conf.js"
+		"CItest": "protractor CIconf.js"
   }
 }
