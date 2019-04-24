@@ -19,10 +19,8 @@
   "scripts": {
     "protractor": "protractor",
     "webdriver-manager": "webdriver-manager",
-
     "webdriver:update": "webdriver-manager update",
     "webdriver:start": "webdriver-manager start",
-    
     "CItest": "protractor CIconf.js",
     "test": "protractor conf.js"
   }
