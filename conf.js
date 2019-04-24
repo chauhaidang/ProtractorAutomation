@@ -1,6 +1,3 @@
-var Jasmine = require('jasmine');
-var jasmine = new Jasmine();
-
 exports.config = {
     framework: 'jasmine',
     jasmineNodeOpts: {
