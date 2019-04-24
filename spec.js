@@ -99,3 +99,13 @@ describe('get list of elements', function() {
         expect(history.count()).toEqual(5);
     })
 });
+
+describe('test multiple browser', function() {
+    it('Test', function() {
+        browser.get('http://www.angularjs.org');
+        browser.addMockModule('moduleA', "angular.module('moduleA', []).value('version', '3');");
+
+        // To create a new browser.
+        var browser2 = browser.forkNewDriverInstance();
+    });
+});
