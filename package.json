@@ -14,8 +14,7 @@
   },
   "homepage": "https://github.com/chauhaidang/ProtractorAutomation#readme",
   "dependencies": {
-    "protractor": "5.4.2",
-    "jasmine": "^3.4.0"
+    "protractor": "5.4.2"
   },
   "scripts": {
     "protractor": "protractor",
