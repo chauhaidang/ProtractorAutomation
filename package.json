@@ -13,7 +13,7 @@
     "url": "https://github.com/chauhaidang/ProtractorAutomation/issues"
   },
   "homepage": "https://github.com/chauhaidang/ProtractorAutomation#readme",
-  "devDependencies": {
+  "dependencies": {
     "protractor": "5.4.2"
   },
   "scripts": {
