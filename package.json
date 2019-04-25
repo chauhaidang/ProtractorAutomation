@@ -18,10 +18,11 @@
     "protractor": "^5.4.2"
   },
   "scripts": {
-    "protractor": "protractor",
+    "pro": "protractor",
     "pro:version": "protractor --version",
     "jas": "jasmine",
     "driver": "webdriver-manager",
+    "driver:start:3.14.0": "webdriver-manager start --versions.standalone=3.14.0",
     "CItest": "protractor CIconf.js",
     "test": "protractor conf.js"
   }
