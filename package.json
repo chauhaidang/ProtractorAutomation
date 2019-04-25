@@ -14,13 +14,18 @@
   },
   "homepage": "https://github.com/chauhaidang/ProtractorAutomation#readme",
   "dependencies": {
-    "protractor": "5.4.2"
+    "protractor": "^5.4.2",
+    "jasmine": "^3.4.0"
   },
   "scripts": {
     "protractor": "protractor",
-    "webdriver-manager": "webdriver-manager",
-    "webdriver:update": "webdriver-manager update",
-    "webdriver:start": "webdriver-manager start",
+    "pro:version": "protractor --version",
+    "jasmine": "jasmine",
+    "jas:version": "jasmine version",
+    "driver": "webdriver-manager",
+    "driver:version": "webdriver-manager version",
+    "driver:update": "webdriver-manager update",
+    "driver:start": "webdriver-manager start",
     "CItest": "protractor CIconf.js",
     "test": "protractor conf.js"
   }
