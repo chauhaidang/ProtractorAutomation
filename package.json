@@ -20,12 +20,8 @@
   "scripts": {
     "protractor": "protractor",
     "pro:version": "protractor --version",
-    "jasmine": "jasmine",
-    "jas:version": "jasmine version",
+    "jas": "jasmine",
     "driver": "webdriver-manager",
-    "driver:version": "webdriver-manager version",
-    "driver:update": "webdriver-manager update",
-    "driver:start": "webdriver-manager start",
     "CItest": "protractor CIconf.js",
     "test": "protractor conf.js"
   }
