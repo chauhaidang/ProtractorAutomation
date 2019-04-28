@@ -1,11 +1,10 @@
 {
   "name": "protractor_framework",
-  "version": "1.0.0",
-  "description": "test",
-  "main": "index.js",
+  "version": "1.0.5",
+  "description": "Test framework",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chauhaidang/ProtractorAutomation.git"
+    "url": "https://github.com/chauhaidang/ProtractorAutomation.git"
   },
   "author": "dangchau",
   "license": "ISC",
@@ -13,7 +12,6 @@
     "url": "https://github.com/chauhaidang/ProtractorAutomation/issues"
   },
   "homepage": "https://github.com/chauhaidang/ProtractorAutomation#readme",
-  "dependencies comment": "Protractor is including jasmine and webdriver-manager with stable version, so we dont need to add them as dependency",
   "dependencies": {
     "protractor": "^5.4.2"
   },
