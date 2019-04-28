@@ -13,19 +13,16 @@
     "url": "https://github.com/chauhaidang/ProtractorAutomation/issues"
   },
   "homepage": "https://github.com/chauhaidang/ProtractorAutomation#readme",
+  "dependencies comment": "Protractor is including jasmine and webdriver-manager with stable version, so we dont need to add them as dependency",
   "dependencies": {
-    "protractor": "^5.4.2",
-    "jasmine": "^3.4.0"
+    "protractor": "^5.4.2"
   },
   "scripts": {
-    "protractor": "protractor",
+    "pro": "protractor",
     "pro:version": "protractor --version",
-    "jasmine": "jasmine",
-    "jas:version": "jasmine version",
+    "jas": "jasmine",
     "driver": "webdriver-manager",
-    "driver:version": "webdriver-manager version",
-    "driver:update": "webdriver-manager update",
-    "driver:start": "webdriver-manager start",
+    "driver:start:3.14.0": "webdriver-manager start --versions.standalone=3.14.0",
     "CItest": "protractor CIconf.js",
     "test": "protractor conf.js"
   }
