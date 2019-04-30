@@ -20,7 +20,8 @@
     "pro:version": "protractor --version",
     "jas": "jasmine",
     "driver": "webdriver-manager",
-    "driver:start:3.14.0": "webdriver-manager start --versions.standalone=3.14.0",
+    "driver:update": "webdriver-manager update --chrome --versions.chrome 2.46",
+    "driver:start": "webdriver-manager start --versions.chrome 2.46",
     "CItest": "protractor CIconf.js",
     "test": "protractor conf.js"
   }
