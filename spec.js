@@ -67,3 +67,26 @@ describe('multiple scenarios', function(){
         expect(firstNumber.getAttribute('value')).toEqual('5');        
     });
 });
+
+// Part 4
+describe('get list of elements', function(){
+    // global var
+    var firstNumber = element(by.model('first'));
+    var secondNumber = element(by.model('second'));
+    var goButton = element(by.id('gobutton'));
+    var result = element(by.className('ng-binding'));
+    var history = element.all(by.repeater('result in memory'));
+
+    function add(a, b) {
+        firstNumber.sendKeys(a);
+        secondNumber.sendKeys(b);
+        goButton.click();
+    }
+
+    it('count', function(){
+        browser.get('http://juliemr.github.io/protractor-demo/');
+        add(1, 2);
+        add(2, 3);
+        expect(history.count()).toEqual(2);
+    });
+});
