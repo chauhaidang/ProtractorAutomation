@@ -13,7 +13,9 @@
   },
   "homepage": "https://github.com/chauhaidang/ProtractorAutomation#readme",
   "dependencies": {
-    "protractor": "^5.4.2"
+    "dateformat": "3.0.3",
+    "protractor": "^5.4.2",
+    "winston": "^3.2.1"
   },
   "scripts": {
     "pro": "protractor",
