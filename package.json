@@ -13,6 +13,8 @@
   },
   "homepage": "https://github.com/chauhaidang/ProtractorAutomation#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "@babel/runtime": "^7.4.4",
     "dateformat": "3.0.3",
     "protractor": "^5.4.2",
     "winston": "^3.2.1"
@@ -26,5 +28,11 @@
     "driver:start": "webdriver-manager start --versions.chrome 2.46",
     "CItest": "protractor CIconf.js",
     "test": "protractor conf.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/register": "^7.4.4",
+    "@babel/preset-env": "^7.4.4"
   }
 }
