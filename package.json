@@ -15,7 +15,12 @@
   "dependencies": {
     "dateformat": "3.0.3",
     "protractor": "^5.4.2",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "jasmine": "3.4.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "2.8.7",
+    "typescript": "^3.4.5"
   },
   "scripts": {
     "pro": "protractor",
@@ -25,6 +30,7 @@
     "driver:update": "webdriver-manager update --chrome --versions.chrome 2.46",
     "driver:start": "webdriver-manager start --versions.chrome 2.46",
     "CItest": "protractor CIconf.js",
-    "test": "protractor conf.js"
+    "test": "protractor conf.js",
+    "compile": "tsc -w"
   }
 }
