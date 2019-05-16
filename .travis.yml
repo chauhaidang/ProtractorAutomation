@@ -14,4 +14,5 @@ before_script:
   - npm run driver:update
   
 script:
-  - npm run driver:start && npm run test
+  - npm run driver:start & sleep 10 
+  - npm run test
