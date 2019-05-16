@@ -8,10 +8,12 @@ addons:
 language: node_js
 node_js:
   - "12.2.0"
+before_install:
+  - cd project
 install:
   - npm install
-script:
+before_script:
   - npm run driver:update
   - npm run driver:start
-  - open -a Terminal -n
+script:
   - npm run test
