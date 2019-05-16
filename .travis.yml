@@ -9,7 +9,7 @@ language: node_js
 node_js:
   - "12.2.0"
 install:
-  - npm install
+  - npm ci
 before_script:
   - npm run driver:update
   - npm run driver:start
