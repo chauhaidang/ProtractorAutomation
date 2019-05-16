@@ -9,7 +9,7 @@ language: node_js
 node_js:
   - "12.2.0"
 before_install:
-  - cd project
+  - cd ProtractorAutomation
 install:
   - npm install
 before_script:
