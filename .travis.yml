@@ -12,6 +12,6 @@ install:
   - npm ci
 before_script:
   - npm run driver:update
-  - npm run driver:start
+  
 script:
-  - npm run test
+  - npm run driver:start & npm run test
