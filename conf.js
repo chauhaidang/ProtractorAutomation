@@ -30,7 +30,10 @@ exports.config = {
 
     multiCapabilities: [
         {
-            browserName: 'chrome'
+            browserName: 'chrome',
+            chromeOptions: {
+                args: ["--headless", "--disable-gpu"]
+            }
         }
     ],
 
