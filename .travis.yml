@@ -12,7 +12,6 @@ install:
   - npm ci
 before_script:
   - npm run driver:update
-  
-script:
   - npm run driver:start & sleep 10 
+script:
   - npm run test
