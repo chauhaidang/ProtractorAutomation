@@ -29,11 +29,11 @@ exports.config = {
     specs: ['spec.js'],
 
     capabilities: {
-        browserName: 'firefox',
+        browserName: 'chrome',
 
-        'moz:firefoxOptions': {
-            args: ["--headless"]
-        }
+        chromeOptions: {
+           args: [ "--headless", "--disable-gpu"]
+         }
     },
 
     //Execute when protractor config is ready
