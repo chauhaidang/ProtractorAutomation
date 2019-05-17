@@ -4,8 +4,8 @@
 require('@babel/register');
 
 //Logger winston modules
-let {logger} = require('./infrastructure/HappyLoggy');
-let {winston, transports} = require('winston');
+let { logger } = require('./infrastructure/HappyLoggy');
+let { winston, transports } = require('winston');
 
 //dateformat library
 let dateformat = require('dateformat');
@@ -28,14 +28,13 @@ exports.config = {
 
     specs: ['spec.js'],
 
-    multiCapabilities: [
-        {
-            browserName: 'chrome',
-            chromeOptions: {
-                args: ["--headless", "--disable-gpu"]
-            }
+    capabilities: {
+        browserName: 'firefox',
+
+        'moz:firefoxOptions': {
+            args: ["--headless"]
         }
-    ],
+    },
 
     //Execute when protractor config is ready
     onPrepare: () => {

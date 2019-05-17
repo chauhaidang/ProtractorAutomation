@@ -26,7 +26,6 @@
     "driver": "webdriver-manager",
     "driver:update": "webdriver-manager update --chrome --versions.chrome 2.46",
     "driver:start": "webdriver-manager start --versions.chrome 2.46",
-    "CItest": "protractor CIconf.js",
     "test": "protractor conf.js",
     "testCI": "protractor confCI.js"
   },
