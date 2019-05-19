@@ -4,8 +4,8 @@
 require('@babel/register');
 
 //Logger winston modules
-let {logger} = require('./infrastructure/HappyLoggy');
-let {winston, transports} = require('winston');
+let { logger } = require('./infrastructure/HappyLoggy');
+let { winston, transports } = require('winston');
 
 //dateformat library
 let dateformat = require('dateformat');
@@ -14,7 +14,7 @@ let dateformat = require('dateformat');
 const reportDir = 'Report/';
 
 exports.config = {
-    framework: 'jasmine',
+    framework: 'jasmine2',
     jasmineNodeOpts: {
         // If true, print colors to the terminal.
         showColors: true,
@@ -26,16 +26,32 @@ exports.config = {
 
     seleniumAddress: 'http://localhost:4444/wd/hub',
 
-    specs: ['spec.js'],
+    specs: ['test/*.js'],
 
-    multiCapabilities: [
-        {
-            browserName: 'chrome'
-        }
-    ],
+    capabilities: {
+        // browserName: 'chrome',
+        // chromeOptions: {
+        //     args: ["incognito", "disable-extensions"]
+        // },
+        browserName: 'firefox',
+        'moz:firefoxOptions': {
+            args: ['--headless', '-safe-mode']
+        },
+        //Each spec run with differnent browser session
+        shardTestFiles: true,
+        //Only 1 instance at the time, if set to true, it can be run parallel
+        maxInstances: 1
+    },
+
+    baseUrl: "https://tiki.vn",
+
+    //between it block
+    restartBrowserBetweenTests: false,
 
     //Execute when protractor config is ready
     onPrepare: () => {
+        browser.waitForAngularEnabled(false);
+        browser.manage().window().maximize();
         let date = new Date();
         let reportNameSpace = dateformat(date, 'dddd_mmmm_dS_yyyy_HH_MM_ss');
         //Add transport file (similar to log4j file appender)
