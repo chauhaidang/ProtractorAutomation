@@ -25,17 +25,17 @@ exports.config = {
     },
 
     seleniumAddress: 'http://localhost:4444/wd/hub',
-
-    specs: ['spec.js'],
-
+    specs: ['login.js'],
     multiCapabilities: [
         {
             browserName: 'chrome'
         }
     ],
-
+    baseUrl: "https://tiki.vn",
     //Execute when protractor config is ready
-    onPrepare: () => {
+    onPrepare: function () {
+        browser.waitForAngularEnabled(false);
+        browser.manage().window().maximize();
         let date = new Date();
         let reportNameSpace = dateformat(date, 'dddd_mmmm_dS_yyyy_HH_MM_ss');
         //Add transport file (similar to log4j file appender)
