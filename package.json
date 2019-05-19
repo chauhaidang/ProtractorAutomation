@@ -27,7 +27,6 @@
     "driver:update": "webdriver-manager update --chrome --versions.chrome 2.46",
     "driver:start": "webdriver-manager start --versions.chrome 2.46",
     "test": "protractor conf.js",
-    "testCI": "protractor confCI.js"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
