@@ -35,7 +35,7 @@ exports.config = {
         // },
         browserName: 'firefox',
         'moz:firefoxOptions': {
-            args: ['--headless']
+            args: ['--headless', '-safe-mode']
         },
         //Each spec run with differnent browser session
         shardTestFiles: true,
