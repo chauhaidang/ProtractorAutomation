@@ -7,7 +7,7 @@ describe('[ PA8 ] Verify if i can log in to tiki successfully', function(){
     var inputUser = element(by.xpath('//input[@id="email"]'));
     var inputPassword = element(by.xpath('//input[@id="password"]'));
     var logOut = element(by.xpath('//p[@title="Thoát tài khoản"]'))
-    var buttonLoginInPanel = element(by.xpath('//p[@class="forgot-password"]/following-sibling::button'));
+    var buttonLoginInPanel = element(by.xpath('//p[@class="forgot-password"]/following-sibling::button[text()="Đăng nhập"]'));
 
     it('Navigate to http://www.tiki.vn', async function(){
         await browser.get(browser.baseUrl);
