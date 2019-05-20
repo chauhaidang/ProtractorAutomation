@@ -12,6 +12,9 @@ let dateformat = require('dateformat');
 
 //Variables
 const reportDir = 'Report/';
+const fs = require('fs');
+const path = require('path');
+let reportNameSpace;
 
 exports.config = {
     framework: 'jasmine2',
@@ -56,14 +59,28 @@ exports.config = {
     onPrepare: () => {
         browser.waitForAngularEnabled(false);
         browser.manage().window().maximize();
-
+        //Clean up all files
+        fs.readdir(reportDir, (err, files) => {
+            if(err) throw err;
+            for(const file of files) {
+                fs.unlink(path.join(reportDir, file), err => {
+                    if(err) throw err;
+                })
+            }
+        });
+        
         let date = new Date();
-        let reportNameSpace = dateformat(date, 'dddd_mmmm_dS_yyyy_HH_MM_ss');
+        reportNameSpace = dateformat(date, 'dddd_mmmm_dS_yyyy_HH_MM_ss');
         //Add transport file (similar to log4j file appender)
         logger.add(
-            new transports.File({ filename: `${reportDir}${reportNameSpace}_ExecutionLog.log` })
+            new transports.File({ filename: `${__dirname}/${reportDir}${reportNameSpace}_ExecutionLog.log` })
         );
         //Initial browser variable
         browser.logger = logger;
+        
+    },
+
+    afterLaunch: () => {
+        browser.logger.info(`PLEASE SEE LOGS HERE: ${__dirname}/${reportDir}${reportNameSpace}_ExecutionLog.log`);
     }
 };
