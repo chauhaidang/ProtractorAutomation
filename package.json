@@ -17,7 +17,8 @@
     "@babel/runtime": "^7.4.4",
     "dateformat": "3.0.3",
     "protractor": "^5.4.2",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "jshint": "^2.10.2"
   },
   "scripts": {
     "pro": "protractor",
@@ -26,7 +27,8 @@
     "driver": "webdriver-manager",
     "driver:update": "webdriver-manager update --chrome --versions.chrome 2.46",
     "driver:start": "webdriver-manager start --versions.chrome 2.46",
-    "test": "protractor conf.js"
+    "test": "protractor conf.js",
+    "syntax": "jshint"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
