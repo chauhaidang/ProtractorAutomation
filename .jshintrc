@@ -1,0 +1,18 @@
+{
+    "curly": true,
+    "eqeqeq": true,
+    "esversion": 8,
+    "nocomma": true,
+    "strict": "implied",
+    "trailingcomma": true,
+    "undef": true,
+    "unused": true,
+    "eqnull": true,
+    "jasmine": true,
+    "globals": {
+        "protractor": false,
+        "element": false,
+        "by": false,
+        "browser": false
+    }
+}
