@@ -29,17 +29,18 @@ exports.config = {
     specs: ['test/*.js'],
 
     capabilities: {
-        // browserName: 'chrome',
-        // chromeOptions: {
-        //     args: ["incognito", "disable-extensions"]
-        // },
-        browserName: 'firefox',
-        'moz:firefoxOptions': {
-            args: ['--headless', '-safe-mode']
+        browserName: 'chrome',
+        chromeOptions: {
+            //args: ["incognito", "disable-extensions"]
+            args: [ "--headless", '--window-size=1800,1000']
         },
+        // browserName: 'firefox',
+        // 'moz:firefoxOptions': {
+        //     args: ['--headless', '--safe-mode']
+        // },
         //Each spec run with differnent browser session
         shardTestFiles: true,
-        //Only 1 instance at the time, if set to true, it can be run parallel
+        //Only 1 instance at the time, if set to be more than 1, it can be run in parallel
         maxInstances: 1
     },
 
@@ -48,10 +49,14 @@ exports.config = {
     //between it block
     restartBrowserBetweenTests: false,
 
+    //Control flow on/off when using async/await
+    SELENIUM_PROMISE_MANAGER: false,
+
     //Execute when protractor config is ready
     onPrepare: () => {
         browser.waitForAngularEnabled(false);
         browser.manage().window().maximize();
+
         let date = new Date();
         let reportNameSpace = dateformat(date, 'dddd_mmmm_dS_yyyy_HH_MM_ss');
         //Add transport file (similar to log4j file appender)

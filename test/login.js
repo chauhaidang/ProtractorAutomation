@@ -55,9 +55,3 @@ describe('[ PA8 ] Verify if i can log in to tiki successfully', function(){
         await browser.wait(EC.visibilityOf(logOut), 5000);
     });
 });
-
-describe('hashajsa', function(){
-    it('asda',function(){
-        browser.get('https://google.com');
-    })
-})

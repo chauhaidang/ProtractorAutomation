@@ -1,6 +1,6 @@
 {
   "name": "protractor_framework",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "description": "Test framework",
   "repository": {
     "type": "git",
