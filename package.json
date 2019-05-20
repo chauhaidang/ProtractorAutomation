@@ -18,7 +18,8 @@
     "dateformat": "3.0.3",
     "protractor": "^5.4.2",
     "winston": "^3.2.1",
-    "jshint": "^2.10.2"
+    "jshint": "^2.10.2",
+    "fs-extra": "^8.0.1"
   },
   "scripts": {
     "pro": "protractor",

@@ -13,6 +13,7 @@ let dateformat = require('dateformat');
 //Variables
 const reportDir = 'Report/';
 const fs = require('fs');
+const fs2 = require('fs-extra');
 const path = require('path');
 let reportNameSpace;
 
@@ -60,21 +61,27 @@ exports.config = {
         browser.waitForAngularEnabled(false);
         browser.manage().window().maximize();
 
-         //Clean up all files
-         fs.readdir(reportDir, (err, files) => {
-            if(err) throw err;
-            for(const file of files) {
-                fs.unlink(path.join(reportDir, file), err => {
-                    if(err) throw err;
-                })
-            }
-        });
+        //Clean up all files
+        //  fs.readdir(reportDir, (err, files) => {
+        //     if(err) throw err;
+        //     for(const file of files) {
+        //         fs.unlink(path.join(reportDir, file), err => {
+        //             if(err) throw err;
+        //         })
+        //     }
+        // });
+
+        fs2.emptyDir(reportDir).then(() => {
+            console.log('success!')
+        }).catch(err => {
+            console.error(err)
+        })
 
         let date = new Date();
         reportNameSpace = dateformat(date, 'dddd_mmmm_dS_yyyy_HH_MM_ss');
         //Add transport file (similar to log4j file appender)
         logger.add(
-            new transports.File({ filename: `${__dirname}/${reportDir}${reportNameSpace}_ExecutionLog.log` })
+            new transports.File({ filename: `${__dirname}/${reportDir}${reportNameSpace}/ExecutionLog.log` })
         );
         //Initial browser variable
         browser.logger = logger;
