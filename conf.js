@@ -68,7 +68,7 @@ exports.config = {
                 })
             }
         });
-        
+
         let date = new Date();
         reportNameSpace = dateformat(date, 'dddd_mmmm_dS_yyyy_HH_MM_ss');
         //Add transport file (similar to log4j file appender)
@@ -81,6 +81,6 @@ exports.config = {
     },
 
     afterLaunch: () => {
-        browser.logger.info(`PLEASE SEE LOGS HERE: ${__dirname}/${reportDir}${reportNameSpace}_ExecutionLog.log`);
+        browser.logger.info(`!!!PLEASE SEE LOGS HERE: ${__dirname}/${reportDir}${reportNameSpace}_ExecutionLog.log`);
     }
 };
