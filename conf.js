@@ -34,37 +34,37 @@ exports.config = {
 
     specs: ['test/*.js'],
 
-    // capabilities: {
-    //     browserName: 'chrome',
-    //     chromeOptions: {
-    //         //args: ["incognito", "disable-extensions"]
-    //         args: ["--headless", '--window-size=1800,1000']
-    //     },
-    //     // browserName: 'firefox',
-    //     // 'moz:firefoxOptions': {
-    //     //     args: ['--headless', '--safe-mode']
-    //     // },
-    //     //Each spec run with differnent browser session
-    //     shardTestFiles: true,
-    //     //Only 1 instance at the time, if set to be more than 1, it can be run in parallel
-    //     maxInstances: 1
-    // },
-
-    multiCapabilities: [
-        {
-            browserName: 'chrome',
-            chromeOptions: {
-                args: ["--headless", '--window-size=1800,1000']
-            },
+    capabilities: {
+        browserName: 'chrome',
+        chromeOptions: {
+            //args: ["incognito", "disable-extensions"]
+            args: ["--headless", '--window-size=1800,1000']
         },
-        {
-            browserName: 'firefox',
-            'moz:firefoxOptions': {
-                args: ['--headless', '--safe-mode']
-            },
-        }
-    ],
-    maxSessions: 1,
+        // browserName: 'firefox',
+        // 'moz:firefoxOptions': {
+        //     args: ['--headless', '--safe-mode']
+        // },
+        //True: Each spec run with differnent browser session
+        shardTestFiles: true,
+        //Only 1 instance at the time, if set to be more than 1, it can be run in parallel
+        maxInstances: 1
+    },
+
+    // multiCapabilities: [
+    //     {
+    //         browserName: 'chrome',
+    //         chromeOptions: {
+    //             args: ["--headless", '--window-size=1800,1000']
+    //         },
+    //     },
+    //     {
+    //         browserName: 'firefox',
+    //         'moz:firefoxOptions': {
+    //             args: ['--headless', '--safe-mode']
+    //         },
+    //     }
+    // ],
+    // maxSessions: 1,
 
     baseUrl: "https://tiki.vn",
 
@@ -138,7 +138,9 @@ exports.config = {
                browserVersion: browserVersion,
                modifiedSuiteName: false,
                screenshotsOnlyOnFailure: false,
-               testPlatform: platform
+               testPlatform: platform,
+               consolidate: true,
+               consolidateAll: true,
            };
            new HTMLReport().from(`${reportDir}${reportNameSpace}/xmlresults.xml`, testConfig);
        });
