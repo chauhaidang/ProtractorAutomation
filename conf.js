@@ -50,14 +50,20 @@ exports.config = {
 
     multiCapabilities: [
         {
-            browserName: 'chrome'
+            browserName: 'chrome',
+            chromeOptions: {
+                args: ["--headless", '--window-size=1800,1000']
+            },
         },
         {
-            browserName: 'firefox'
+            browserName: 'firefox',
+            'moz:firefoxOptions': {
+                args: ['--headless', '--safe-mode']
+            },
         }
     ],
     maxSessions: 1,
-    
+
     baseUrl: "https://tiki.vn",
 
     //between it block
