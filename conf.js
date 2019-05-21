@@ -6,6 +6,8 @@ require('@babel/register');
 //Logger winston modules
 let { logger } = require('./infrastructure/HappyLoggy');
 let { winston, transports } = require('winston');
+let HTMLReport = require('protractor-html-reporter-2');
+let jasmineReporters = require('jasmine-reporters');
 
 //dateformat library
 let dateformat = require('dateformat');
@@ -80,7 +82,7 @@ exports.config = {
         })
     },
 
-    //Execute when protractor config is ready
+    //Execute when protractor config is ready for a capability
     onPrepare: () => {
         browser.waitForAngularEnabled(false);
         browser.manage().window().maximize();
@@ -97,11 +99,48 @@ exports.config = {
 
         let date = new Date();
         reportNameSpace = dateformat(date, 'dddd_mmmm_dS_yyyy_HH_MM_ss');
-        //Add transport file (similar to log4j file appender)
+
+         //Add transport file (similar to log4j file appender)
         logger.add(
             new transports.File({ filename: `${__dirname}/${reportDir}${reportNameSpace}/${reportNameSpace}_ExecutionLog.log` })
         );
+
         //Initial browser variable
         browser.logger = logger;
+
+        // Add a screenshot reporter and store screenshots to Report/
+        jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({
+            consolidateAll: true,
+            savePath: `${reportDir}${reportNameSpace}`,
+            filePrefix: 'xmlresults'
+        }));
+  
+    },
+
+    //Execute when protractor config is completed for a capability
+    onComplete: () => {
+        var browserName, browserVersion;
+        var capsPromise = browser.getCapabilities();
+    
+        capsPromise.then(function (caps) {
+           browserName = caps.get('browserName');
+           browserVersion = caps.get('version');
+           platform = caps.get('platform');
+    
+           var HTMLReport = require('protractor-html-reporter-2');
+    
+           testConfig = {
+               reportTitle: 'Protractor Test Execution Report',
+               outputPath: `${reportDir}${reportNameSpace}`,
+               outputFilename: `${reportNameSpace}_HTMLREPORT`,
+               screenshotPath: `${reportDir}${reportNameSpace}/screenshots`,
+               testBrowser: browserName,
+               browserVersion: browserVersion,
+               modifiedSuiteName: false,
+               screenshotsOnlyOnFailure: false,
+               testPlatform: platform
+           };
+           new HTMLReport().from(`${reportDir}${reportNameSpace}/xmlresults.xml`, testConfig);
+       });
     }
 };
