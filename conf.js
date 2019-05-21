@@ -34,8 +34,8 @@ exports.config = {
     capabilities: {
         browserName: 'chrome',
         chromeOptions: {
-            args: ["incognito", "disable-extensions","disable-infobars"],
-            //args: ["--headless", '--window-size=1800,1000']
+            //args: ["incognito", "disable-extensions","disable-infobars"],
+            args: ["--headless", '--window-size=1800,1000']
         },
         //True: Each spec run with differnent browser session
         shardTestFiles: true,
