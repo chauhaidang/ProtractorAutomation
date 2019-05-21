@@ -32,22 +32,32 @@ exports.config = {
 
     specs: ['test/*.js'],
 
-    capabilities: {
-        browserName: 'chrome',
-        chromeOptions: {
-            //args: ["incognito", "disable-extensions"]
-            args: ["--headless", '--window-size=1800,1000']
-        },
-        // browserName: 'firefox',
-        // 'moz:firefoxOptions': {
-        //     args: ['--headless', '--safe-mode']
-        // },
-        //Each spec run with differnent browser session
-        shardTestFiles: true,
-        //Only 1 instance at the time, if set to be more than 1, it can be run in parallel
-        maxInstances: 1
-    },
+    // capabilities: {
+    //     browserName: 'chrome',
+    //     chromeOptions: {
+    //         //args: ["incognito", "disable-extensions"]
+    //         args: ["--headless", '--window-size=1800,1000']
+    //     },
+    //     // browserName: 'firefox',
+    //     // 'moz:firefoxOptions': {
+    //     //     args: ['--headless', '--safe-mode']
+    //     // },
+    //     //Each spec run with differnent browser session
+    //     shardTestFiles: true,
+    //     //Only 1 instance at the time, if set to be more than 1, it can be run in parallel
+    //     maxInstances: 1
+    // },
 
+    multiCapabilities: [
+        {
+            browserName: 'chrome'
+        },
+        {
+            browserName: 'firefox'
+        }
+    ],
+    maxSessions: 1,
+    
     baseUrl: "https://tiki.vn",
 
     //between it block
@@ -55,6 +65,14 @@ exports.config = {
 
     //Control flow on/off when using async/await
     SELENIUM_PROMISE_MANAGER: false,
+
+    beforeLaunch: () => {
+        fs2.emptyDir(reportDir).then(() => {
+            console.log('success clean up report folder before run tests!')
+        }).catch(err => {
+            console.error(err)
+        })
+    },
 
     //Execute when protractor config is ready
     onPrepare: () => {
@@ -71,17 +89,11 @@ exports.config = {
         //     }
         // });
 
-        fs2.emptyDir(reportDir).then(() => {
-            console.log('success!')
-        }).catch(err => {
-            console.error(err)
-        })
-
         let date = new Date();
         reportNameSpace = dateformat(date, 'dddd_mmmm_dS_yyyy_HH_MM_ss');
         //Add transport file (similar to log4j file appender)
         logger.add(
-            new transports.File({ filename: `${__dirname}/${reportDir}${reportNameSpace}/ExecutionLog.log` })
+            new transports.File({ filename: `${__dirname}/${reportDir}${reportNameSpace}/${reportNameSpace}_ExecutionLog.log` })
         );
         //Initial browser variable
         browser.logger = logger;
