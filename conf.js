@@ -6,6 +6,8 @@ require('@babel/register');
 //Logger winston modules
 let { logger } = require('./infrastructure/HappyLoggy');
 let { winston, transports } = require('winston');
+let HTMLReport = require('protractor-html-reporter-2');
+let jasmineReporters = require('jasmine-reporters');
 
 //dateformat library
 let dateformat = require('dateformat');
@@ -42,11 +44,27 @@ exports.config = {
         // 'moz:firefoxOptions': {
         //     args: ['--headless', '--safe-mode']
         // },
-        //Each spec run with differnent browser session
+        //True: Each spec run with differnent browser session
         shardTestFiles: true,
         //Only 1 instance at the time, if set to be more than 1, it can be run in parallel
         maxInstances: 1
     },
+
+    // multiCapabilities: [
+    //     {
+    //         browserName: 'chrome',
+    //         chromeOptions: {
+    //             args: ["--headless", '--window-size=1800,1000']
+    //         },
+    //     },
+    //     {
+    //         browserName: 'firefox',
+    //         'moz:firefoxOptions': {
+    //             args: ['--headless', '--safe-mode']
+    //         },
+    //     }
+    // ],
+    // maxSessions: 1,
 
     baseUrl: "https://tiki.vn",
 
@@ -56,7 +74,15 @@ exports.config = {
     //Control flow on/off when using async/await
     SELENIUM_PROMISE_MANAGER: false,
 
-    //Execute when protractor config is ready
+    beforeLaunch: () => {
+        fs2.emptyDir(reportDir).then(() => {
+            console.log('success clean up report folder before run tests!')
+        }).catch(err => {
+            console.error(err)
+        })
+    },
+
+    //Execute when protractor config is ready for a capability
     onPrepare: () => {
         browser.waitForAngularEnabled(false);
         browser.manage().window().maximize();
@@ -71,19 +97,52 @@ exports.config = {
         //     }
         // });
 
-        fs2.emptyDir(reportDir).then(() => {
-            console.log('success!')
-        }).catch(err => {
-            console.error(err)
-        })
-
         let date = new Date();
         reportNameSpace = dateformat(date, 'dddd_mmmm_dS_yyyy_HH_MM_ss');
-        //Add transport file (similar to log4j file appender)
+
+         //Add transport file (similar to log4j file appender)
         logger.add(
-            new transports.File({ filename: `${__dirname}/${reportDir}${reportNameSpace}/ExecutionLog.log` })
+            new transports.File({ filename: `${__dirname}/${reportDir}${reportNameSpace}/${reportNameSpace}_ExecutionLog.log` })
         );
+
         //Initial browser variable
         browser.logger = logger;
+
+        // Add a screenshot reporter and store screenshots to Report/
+        jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({
+            consolidateAll: true,
+            savePath: `${reportDir}${reportNameSpace}`,
+            filePrefix: 'xmlresults'
+        }));
+  
+    },
+
+    //Execute when protractor config is completed for a capability
+    onComplete: () => {
+        var browserName, browserVersion;
+        var capsPromise = browser.getCapabilities();
+    
+        capsPromise.then(function (caps) {
+           browserName = caps.get('browserName');
+           browserVersion = caps.get('version');
+           platform = caps.get('platform');
+    
+           var HTMLReport = require('protractor-html-reporter-2');
+    
+           testConfig = {
+               reportTitle: 'Protractor Test Execution Report',
+               outputPath: `${reportDir}${reportNameSpace}`,
+               outputFilename: `${reportNameSpace}_HTMLREPORT`,
+               screenshotPath: `${reportDir}${reportNameSpace}/screenshots`,
+               testBrowser: browserName,
+               browserVersion: browserVersion,
+               modifiedSuiteName: false,
+               screenshotsOnlyOnFailure: false,
+               testPlatform: platform,
+               consolidate: true,
+               consolidateAll: true,
+           };
+           new HTMLReport().from(`${reportDir}${reportNameSpace}/xmlresults.xml`, testConfig);
+       });
     }
 };
