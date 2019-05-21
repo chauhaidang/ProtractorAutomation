@@ -1,5 +1,5 @@
 // [PA 8] Verify if i can log in to tiki successfull
-describe('[ PA8 ] Verify if i can log in to tiki successfully', function(){
+describe('PA8 - Verify if i can log in to tiki successfully', function(){
     var EC = protractor.ExpectedConditions;
     var iconLogin = element(by.xpath('//i[@class="tikicon icon-user"]/following-sibling::span/span'));
     var buttonLogin = element(by.xpath('//button[text()="Đăng nhập"]'));
