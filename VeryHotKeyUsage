@@ -1,0 +1,5 @@
+Select a code region - > press Control + K | Command + K
+Next command will be: (Window or Mac)
+- Control + F or Command + F : reformat code
+- Control + 0 or Command + 0 : fold code
+- Control + J or Command + J : unfold code 

@@ -1,11 +1,10 @@
 {
   "name": "protractor_framework",
   "version": "1.0.0",
-  "description": "test",
-  "main": "index.js",
+  "description": "Test framework",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chauhaidang/ProtractorAutomation.git"
+    "url": "https://github.com/chauhaidang/ProtractorAutomation.git"
   },
   "author": "dangchau",
   "license": "ISC",
@@ -13,11 +12,31 @@
     "url": "https://github.com/chauhaidang/ProtractorAutomation/issues"
   },
   "homepage": "https://github.com/chauhaidang/ProtractorAutomation#readme",
-  "devDependencies": {
-    "protractor": "5.4.2"
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "@babel/runtime": "^7.4.4",
+    "dateformat": "3.0.3",
+    "fs-extra": "^8.0.1",
+    "jshint": "^2.10.2",
+    "protractor": "^5.4.2",
+    "winston": "^3.2.1"
   },
   "scripts": {
-    "protractor": "protractor",
-    "webdriver-manager": "webdriver-manager"
+    "pro": "protractor",
+    "pro:version": "protractor --version",
+    "jas": "jasmine",
+    "driver": "webdriver-manager",
+    "driver:update": "webdriver-manager update --chrome --versions.chrome 2.46",
+    "driver:start": "webdriver-manager start --versions.chrome 2.46",
+    "test": "protractor conf.js",
+    "syntax": "jshint"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/register": "^7.4.4",
+    "jasmine-reporters": "^2.3.2",
+    "protractor-html-reporter-2": "^1.0.4"
   }
 }

@@ -1,0 +1,17 @@
+dist: trusty
+addons:
+  apt:
+    sources:
+      - google-chrome # download chrome 
+    packages:
+      - google-chrome-stable # download stable build of chrome
+language: node_js
+node_js:
+  - "12.2.0"
+install:
+  - npm ci #this is to make sure npm will get correct npm package-lock.json
+before_script:
+  - npm run driver:update
+  - npm run driver:start & sleep 10 # start driver then open another terminal then sleep 10 second
+script:
+  - npm run testCI # run test
