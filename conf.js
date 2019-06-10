@@ -23,6 +23,7 @@ exports.config = {
         showColors: true,
         // Default time to wait in ms before a test fails.
         defaultTimeoutInterval: 30000,
+        includeStackTrace: true,
         // Function called to print jasmine results.
         print: function () { },
     },
@@ -60,6 +61,7 @@ exports.config = {
     // maxSessions: 1,
 
     baseUrl: "https://tiki.vn",
+    getPageTimeout: 10000,
 
     //between it block
     restartBrowserBetweenTests: false,
@@ -68,6 +70,7 @@ exports.config = {
     SELENIUM_PROMISE_MANAGER: false,
 
     beforeLaunch: () => {
+        //Clean up report dir
         fs2.emptyDir(reportDir).then(() => {
             console.log('success clean up report folder before run tests!')
         }).catch(err => {
@@ -100,6 +103,7 @@ exports.config = {
 
         //Initial browser variable
         browser.logger = logger;
+        browser.timeout = 5000;
 
         // Add a screenshot reporter and store screenshots to Report/
         jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({
