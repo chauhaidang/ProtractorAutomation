@@ -1,5 +1,3 @@
-let EC = protractor.ExpectedConditions;
-
 export let ecCondition = {
     CONTAIN_TEXT: 'textInElement',
     VISIBLE: 'visibility',
@@ -19,7 +17,8 @@ export let navigateTo = async (url = '') => {
 }
 
 export let waitSupport = async (element, condition, text = '') => {
-    let waitFor
+    let waitFor;
+    let EC = protractor.ExpectedConditions;
     switch(condition){
         case ecCondition.CONTAIN_TEXT:
             waitFor = EC.textToBePresentInElement(element, text);
@@ -76,7 +75,19 @@ export let sendKeyElementVisible = async (element, text) => {
         await browser.logger.info(`Send keys to element succesfully!`);
     }
     catch(e){
-        await browser.logger.error(`Can not send key to element due to => ${e}`);
-        throw new Error(`Can not send key to element due to => ${e}`);
+        await browser.logger.error(`Can not send key '${text}' to element due to => ${e}`);
+        throw new Error(`Can not send key '${text}' to element due to => ${e}`);
+    }
+}
+
+export let clickElementPresent = async (element) => {
+    try{
+        await waitSupport(element, ecCondition.PRESENT);
+        await element.click();
+        await browser.logger.info(`Click element succesfully!`);
+    }
+    catch(e){
+        await browser.logger.error(`Can not click to element due to => ${e}`);
+        throw new Error(`Can not click to element due to => ${e}`);
     }
 }
